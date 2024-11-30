@@ -49,4 +49,19 @@ executor->Execute("M");
  const Pose target({0, -1, 'S'});
  ASSERT_EQ(target, executor->Query());
 }
+TEST(executorTest, should_turn_left_and_change_heading_to_W_given_command_is_L_and_facing_is_N)
+{
+    std::unique_ptr<Executor> executor(Executor::NewExecutor({0, 0, 'N'}));
+    executor->Execute("L");
+    const Pose target({0, 0, 'W'});
+    ASSERT_EQ(target, executor->Query());
+}
+
+TEST(executorTest, should_turn_right_and_change_heading_to_E_given_command_is_R_and_facing_is_N)
+{
+    std::unique_ptr<Executor> executor(Executor::NewExecutor({0, 0, 'N'}));
+    executor->Execute("R");
+    const Pose target({0, 0, 'E'});
+    ASSERT_EQ(target, executor->Query());
+}
 }
